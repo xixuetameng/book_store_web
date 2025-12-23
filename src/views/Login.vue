@@ -1,6 +1,7 @@
 ﻿<script lang="ts" setup>
 import {ref} from "vue";
 import {login} from "../api/auth";
+import {setUser} from "../utils/auth";
 
 const nickname=ref('')
 const password=ref('')
@@ -11,7 +12,15 @@ const handleLogin=async ()=>
   try
   {
     const response=await login({nickname:nickname.value,password:password.value})
-    console.log(response)
+    if(response.data.success!=true)
+    {
+      console.log(response.data.message)
+      return
+    }
+    const {id,name}=response.data.data;
+    console.log("登录成功")
+    console.log({id,name})
+    setUser({id,name})
   }
   catch (err:any)
   {
