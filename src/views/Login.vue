@@ -13,9 +13,10 @@ const handleLogin=async ()=>
     const response=await login({nickname:nickname.value,password:password.value})
     console.log(response)
   }
-  catch (e)
+  catch (err:any)
   {
-
+    console.log(err)
+    errorMessage.value=err?.response?.data?.message||"登录失败"
   }
 }
 </script>
@@ -28,9 +29,11 @@ const handleLogin=async ()=>
         <label>用户名：</label>
         <input v-model="nickname" type="text" placeholder="请输入用户名" required/>
         <label>密码：</label>
-        <input v-model="password" type="text" required/>
+        <input v-model="password" type="password" placeholder="请输入密码" required/>
+        <button type="submit">登录</button>
       </div>
     </form>
+    <p v-if="errorMessage" class="error">{{errorMessage}}</p>
   </div>
 </template>
 
@@ -61,5 +64,8 @@ button
 {
   padding: 5px 10px;
 }
-
+.error
+{
+  color: red;
+}
 </style>

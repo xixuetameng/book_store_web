@@ -8,5 +8,5 @@ export interface LoginData
 
 export function login(data:LoginData)
 {
-    return request.post("/auth/login", data)
+    return request.post("/Auth/login", data)
 }
