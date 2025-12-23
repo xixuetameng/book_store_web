@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import {login} from "../api/auth";
 import {setUser} from "../utils/auth";
+import router from "../router";
 
 const nickname=ref('')
 const password=ref('')
@@ -21,6 +22,7 @@ const handleLogin=async ()=>
     console.log("登录成功")
     console.log({id,name})
     setUser({id,name})
+    router.push("/home")
   }
   catch (err:any)
   {
