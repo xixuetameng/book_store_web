@@ -11,9 +11,9 @@ const currentPage = ref('CustomerRevise') // 默认显示 Page1
   <div>
     <!-- 顶部标签栏 -->
     <div class="tab-bar">
-      <button @click="currentPage='CustomerRevise'">页面1</button>
-      <button @click="currentPage='BookQuery'">页面2</button>
-      <button @click="currentPage='BookOrder'">页面3</button>
+      <button @click="currentPage='CustomerRevise'">用户信息修改</button>
+      <button @click="currentPage='BookQuery'">书籍查询</button>
+      <button @click="currentPage='BookOrder'">书籍订购</button>
     </div>
 
     <!-- 标签内容显示 -->
