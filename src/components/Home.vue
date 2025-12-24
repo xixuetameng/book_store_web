@@ -1,25 +1,32 @@
 ﻿<script setup>
-import { ref } from 'vue'
+import {computed, ref} from 'vue'
 import CustomerRevise from './CustomerRevise.vue'
 import OrderQuery from './OrderQuery.vue'
 import BookOrder from './BookOrder.vue'
+import {tabConfig} from "../utils/TabConfig.ts";
 
-const currentPage = ref('CustomerRevise') // 默认显示 Page1
+const currentPage = ref(tabConfig[0].name) // 默认显示 Page1
+const currentComponent=computed(() => {
+  return tabConfig.find(tab=>tab.name===currentPage.value)?.component
+})
 </script>
 
 <template>
   <div>
-    <!-- 顶部标签栏 -->
     <div class="tab-bar">
-      <button @click="currentPage='CustomerRevise'">用户信息修改</button>
-      <button @click="currentPage='OrderQuery'">订购记录</button>
-      <button @click="currentPage='BookOrder'">书籍订购</button>
+      <button
+          v-for="tab in tabConfig"
+          :key="tab.name"
+          @click="currentPage = tab.name"
+      >
+        {{ tab.label }}
+      </button>
     </div>
 
-    <!-- 标签内容显示 -->
-    <component :is="currentPage === 'CustomerRevise' ? CustomerRevise : currentPage === 'OrderQuery' ? OrderQuery : BookOrder" />
+    <component :is="currentComponent" />
   </div>
 </template>
+
 
 <style scoped>
 .tab-bar {
