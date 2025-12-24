@@ -1,6 +1,7 @@
 ﻿import CustomerRevise from "../components/CustomerRevise.vue";
 import OrderQuery from "../components/OrderQuery.vue";
 import BookOrder from "../components/BookOrder.vue";
+import BookQuery from "../components/BookQuery.vue";
 
 export interface TabConfigItem
 {
@@ -24,5 +25,10 @@ export const tabConfig: TabConfigItem[] =
         label:"书籍订购",
         name:"BookOrder",
         component:BookOrder
+    },
+    {
+        label:"书籍查询",
+        name:"BookQuery",
+        component:BookQuery
     }
 ]
