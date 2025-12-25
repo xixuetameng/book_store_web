@@ -2,14 +2,15 @@
 import { ref, onMounted } from 'vue'
 import { useCustomerStore } from '../store/CustomerStore'
 import { orderQuery} from "../api/orderQuery.js";
+import {getUser} from "../utils/auth.ts";
 
 
-const customerStore = useCustomerStore()
+// const customerStore = useCustomerStore()
 const tableData = ref([])
 
 const loadOrders = async () => {
   const payload = {
-    Id: customerStore.userId,
+    Id: getUser().id,
   }
 
   try {

@@ -2,21 +2,22 @@
 import { ref } from 'vue'
 import { useCustomerStore } from '../store/CustomerStore'
 import { bookOrder } from '../api/bookOrder.js'
+import {getUser} from "../utils/auth.ts";
 
-const customerStore = useCustomerStore()
+// const customerStore = useCustomerStore()
 
 const bookId = ref('')
 const count = ref('')
 
 // 点击确认按钮
 const order = async () => {
-  if (!customerStore.userId) {
+  if (!getUser().id) {
     console.error('用户ID不存在')
     return
   }
 
   const payload = {
-    CustomerId: customerStore.userId,
+    CustomerId: getUser().id,
     Count: count.value,
     BookId: bookId.value,
     Amount: 0

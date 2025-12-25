@@ -2,8 +2,9 @@
 import { ref } from 'vue'
 import { useCustomerStore } from '../store/CustomerStore'
 import { updateCustomer } from '../api/customerRevise.js'
+import {getUser} from "../utils/auth.ts";
 
-const customerStore = useCustomerStore()
+// const customerStore = useCustomerStore()
 
 const password = ref('')
 const name = ref('')
@@ -11,13 +12,13 @@ const address = ref('')
 
 // 点击确认按钮
 const submit = async () => {
-  if (!customerStore.userId) {
+  if (!getUser().id) {
     console.error('用户ID不存在')
     return
   }
 
   const payload = {
-    id: customerStore.userId,
+    id: getUser().id,
     password: password.value,
     name: name.value,
     address: address.value

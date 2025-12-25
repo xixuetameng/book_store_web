@@ -4,7 +4,7 @@ import Home from '../components/Home.vue'
 import Administrator from '../views/Administrator.vue'
 
 const routes = [
-    { path: '/', redirect: '/Administrator' },
+    { path: '/', redirect: '/Login' },
     { path: '/login', component: Login },
     { path: '/home', component: Home },
     { path: '/administrator',component: Administrator}// 登录后显示主页
